@@ -1,11 +1,13 @@
 import java.io.IOException;
+// import java.lang.System.Logger;
 import java.util.Arrays;
 import java.util.Scanner;
-
+import java.util.logging.*;
 /*Реализуйте алгоритм сортировки пузырьком числового массива, результат после каждой итерации запишите в лог-файл. */
 import java.util.Scanner;
 
 public class Task2 {
+    
     public static void main(String[] args) {
         System.out.println("Введите числа через пробел: ");
         Scanner sc = new Scanner(System.in);
@@ -32,13 +34,16 @@ public class Task2 {
             for (int j = 0; j < numbersArray.length - i - 1; j++) {
                 try{
                     if (Integer.parseInt(numbersArray[j]) > Integer.parseInt(numbersArray[j + 1])) {
-                        try {
+
+                        // try {
+
                             String temp = numbersArray[j];
                             numbersArray[j] = numbersArray[j + 1];
                             numbersArray[j + 1] = temp;
-                        } catch (Exception ex) {
-                            System.err.println("Ошибка :" + ex);
-                        }
+                            logger.log(Level.INFO, String.format("%s <-> %s , %s", numbersArray[j], numbersArray[j+1], Arrays.toString(numbersArray)));
+                        // } catch (Exception ex) {
+                        //     System.err.println("Ошибка :" + ex);
+                        // }
 
                     }
                 } catch(Exception ex) {
@@ -50,4 +55,6 @@ public class Task2 {
         System.out.println(Arrays.toString(numbersArray));
 
     }
+
+    private static Logger logger = Logger.getLogger(Task2.class.getName());
 }
